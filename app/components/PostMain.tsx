@@ -61,26 +61,27 @@ export default function PostMain({ post }: PostMainCompTypes) {
             <span className="px-1">original sound - AWESOME</span>
             <AiFillHeart size="20" />
           </p>
+          <Link href={`/post/${post.id}/${post.user_id}`}>
+            <div className="mt-2.5 flex">
+              <div className="relative min-h-[480px] max-h-[580px] max-w-[260px] flex items-center bg-black rounded-xl cursor-pointer">
+                <video
+                  id={`video-${post.id}`}
+                  loop
+                  controls
+                  muted
+                  className="rounded-xl object-cover mx-auto h-full"
+                  src={useCreateBucketUrl(post?.video_url)}
+                />
+                <img
+                  className="absolute right-2 bottom-10"
+                  width="90"
+                  src="/images/tiktok-logo-white.png"
+                />
+              </div>
 
-          <div className="mt-2.5 flex">
-            <div className="relative min-h-[480px] max-h-[580px] max-w-[260px] flex items-center bg-black rounded-xl cursor-pointer">
-              <video
-                id={`video-${post.id}`}
-                loop
-                controls
-                muted
-                className="rounded-xl object-cover mx-auto h-full"
-                src={useCreateBucketUrl(post?.video_url)}
-              />
-              <img
-                className="absolute right-2 bottom-10"
-                width="90"
-                src="/images/tiktok-logo-white.png"
-              />
+              <PostMainLikes post={post} />
             </div>
-
-            <PostMainLikes post={post} />
-          </div>
+          </Link>
         </div>
       </div>
     </>
