@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { useRouter } from "next/navigation";
@@ -17,6 +17,8 @@ import { useSwipeable } from 'react-swipeable';
 
 
 export default function Post({ params }: PostPageTypes) {
+  const [swipeTranslation, setSwipeTranslation] = useState(0);
+
   let { postById, postsByUser, setPostById, setPostsByUser } = usePostStore();
   let { setLikesByPost } = useLikeStore();
   let { setCommentsByPost } = useCommentStore();
@@ -47,11 +49,20 @@ export default function Post({ params }: PostPageTypes) {
   };
 
   const handlers = useSwipeable({
-    onSwipedDown: () => loopThroughPostsDown(),
-    onSwipedUp: () => loopThroughPostsUp(),
-    preventScrollOnSwipe: true,
+    onSwiping: (eventData) => {
+      setSwipeTranslation(eventData.deltaY);
+    },
+    onSwiped: (eventData) => {
+      if (eventData.dir === 'Up') {
+        loopThroughPostsUp();
+      } else if (eventData.dir === 'Down') {
+        loopThroughPostsDown();
+      }
+      setSwipeTranslation(0); // אפס את ההזזה לאחר החלקה
+    },
     trackMouse: true
   });
+  
   
 
   return (
@@ -60,6 +71,7 @@ export default function Post({ params }: PostPageTypes) {
         id="PostPage"
         className="lg:flex justify-between w-full h-screen bg-black overflow-auto"
         {...handlers}
+        style={{ transform: `translateY(${swipeTranslation}px)` }}
       >
         <div className="lg:w-[calc(100%-540px)] h-full relative">
           <Link
