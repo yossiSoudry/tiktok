@@ -100,7 +100,7 @@ export default function Post({ params }: PostPageTypes) {
           </div>
 
           <img
-            className="absolute z-20 top-[18px] left-[70px] rounded-full lg:mx-0 mx-auto"
+            className="absolute z-20 top-[18px] left-[70px] rounded-full lg:mx-0 mx-auto max-sm:hidden"
             width="45"
             src="/images/tiktok-logo-small.png"
           />
