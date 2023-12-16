@@ -48,7 +48,7 @@ export default function Post({ params }: PostPageTypes) {
   };
 
   useEffect(() => {
-    const element = document.getElementById("your-swipeable-element-id");
+    const element = document.getElementById("PostPage");
 
     if (element) {
       const disableScroll = (e: any) => {
