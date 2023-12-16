@@ -1,5 +1,5 @@
 import { database } from "@/libs/AppWriteClient";
-import useGetProfileByUserId from "./useGetProfileByUserId";
+import getProfileByUserId from "../../actions/getProfileByUserId";
 
 const useGetPostById = async (id: string) => {
   try {
@@ -9,7 +9,7 @@ const useGetPostById = async (id: string) => {
       id
     );
 
-    const profile = await useGetProfileByUserId(post?.user_id);
+    const profile = await getProfileByUserId(post?.user_id);
 
     return {
       id: post?.$id,

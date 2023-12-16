@@ -13,6 +13,8 @@ import { usePostStore } from "@/app/stores/post";
 import { useLikeStore } from "@/app/stores/like";
 import { useCommentStore } from "@/app/stores/comment";
 import useCreateBucketUrl from "@/app/hooks/useCreateBucketUrl";
+import { useSwipeable } from 'react-swipeable';
+
 
 export default function Post({ params }: PostPageTypes) {
   let { postById, postsByUser, setPostById, setPostsByUser } = usePostStore();
@@ -44,11 +46,20 @@ export default function Post({ params }: PostPageTypes) {
     });
   };
 
+  const handlers = useSwipeable({
+    onSwipedDown: () => loopThroughPostsDown(),
+    onSwipedUp: () => loopThroughPostsUp(),
+    preventScrollOnSwipe: true,
+    trackMouse: true
+  });
+  
+
   return (
     <>
       <div
         id="PostPage"
         className="lg:flex justify-between w-full h-screen bg-black overflow-auto"
+        {...handlers}
       >
         <div className="lg:w-[calc(100%-540px)] h-full relative">
           <Link
@@ -105,12 +116,11 @@ export default function Post({ params }: PostPageTypes) {
 
         <div
           id="InfoSection"
-          className="lg:max-w-[550px] relative w-full h-full bg-white"
+          className="lg:max-w-[550px] relative w-full h-full bg-white max-sm:hidden"
         >
           <div className="py-7" />
 
           <ClientOnly>
-            <></>
             {postById ? (
               <CommentsHeader post={postById} params={params} />
             ) : null}

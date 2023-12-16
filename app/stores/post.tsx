@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import { persist, devtools, createJSONStorage } from "zustand/middleware";
 import { Post, PostWithProfile } from "../types";
-import useGetAllPosts from "../hooks/useGetAllPosts";
-import useGetPostsByUser from "../hooks/useGetPostsByUserId";
+import getAllPosts from "../hooks/getAllPosts";
+import useGetPostsByUser from "../../actions/getPostsByUserId";
 import useGetPostById from "../hooks/useGetPostById";
 
 interface PostStore {
@@ -23,7 +23,7 @@ export const usePostStore = create<PostStore>()(
         postById: null,
 
         setAllPosts: async () => {
-          const result = await useGetAllPosts();
+          const result = await getAllPosts();
           set({ allPosts: result });
         },
         setPostsByUser: async (userId: string) => {

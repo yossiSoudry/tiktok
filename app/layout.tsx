@@ -9,6 +9,20 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'TikTok',
   description: 'TikTok clone',
+  icons: {
+    icon: [
+      {
+        // media: "(prefers-color-scheme: light)",
+        url: "/images/icon.png",
+        href: "/images/icon.png",
+      },
+      {
+        // media: "(prefers-color-scheme: dark)",
+        url: "/images/icon.png",
+        href: "/images/icon.png",
+      },
+    ],
+  },
 }
 
 export default function RootLayout({
@@ -19,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
        <UserProvider>
-      <body className={inter.className}>
+      <body className={`${inter.className}`}>
       <AllOverlays />
         {children}
         </body>

@@ -1,7 +1,7 @@
 import { database, Query } from "@/libs/AppWriteClient";
-import useGetProfileByUserId from "./useGetProfileByUserId";
+import getProfileByUserId from "../../actions/getProfileByUserId";
 
-const useGetAllPosts = async () => {
+const getAllPosts = async () => {
   try {
     const response = await database.listDocuments(
       String(process.env.NEXT_PUBLIC_DATABASE_ID),
@@ -11,7 +11,7 @@ const useGetAllPosts = async () => {
     const documents = response.documents;
 
     const objPromises = documents.map(async (doc) => {
-      let profile = await useGetProfileByUserId(doc?.user_id);
+      let profile = await getProfileByUserId(doc?.user_id);
 
       return {
         id: doc?.$id,
@@ -34,4 +34,4 @@ const useGetAllPosts = async () => {
   }
 };
 
-export default useGetAllPosts;
+export default getAllPosts;

@@ -1,3 +1,4 @@
+'use client'
 import Link from "next/link";
 import debounce from "debounce";
 import { useRouter, usePathname } from "next/navigation";
@@ -51,7 +52,7 @@ export default function TopNav() {
     <>
       <div
         id="TopNav"
-        className="fixed bg-white z-30 flex items-center w-full border-b h-[60px]"
+        className="fixed bg-white z-30 flex items-center w-full border-b h-[60px] max-sm:hidden"
       >
         <div
           className={`flex items-center justify-between gap-6 w-full px-4 mx-auto ${

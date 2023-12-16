@@ -8,15 +8,13 @@ export default function MainLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
+  // const pathname = usePathname();
 
   return (
     <>
       <TopNav />
       <div
-        className={`flex justify-between mx-auto w-full lg:px-2.5 px-0 ${
-          pathname == "/" ? "max-w-[1140px]" : ""
-        }`}
+        className='flex justify-between mx-auto w-full lg:px-2.5 px-0'
       >
         <SideNavMain />
         {children}

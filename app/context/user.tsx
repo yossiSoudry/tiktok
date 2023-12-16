@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 import { account, ID } from "@/libs/AppWriteClient"
 import { User, UserContextTypes } from '../types';
 import { useRouter } from 'next/navigation';
-import useGetProfileByUserId from '../hooks/useGetProfileByUserId';
+import getProfileByUserId from '../../actions/getProfileByUserId';
 import useCreateProfile from '../hooks/useCreateProfile';
 
 const UserContext = createContext<UserContextTypes | null>(null);
@@ -19,10 +19,12 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       if (!currentSession) return
 
       const promise = await account.get() as any
-      const profile = await useGetProfileByUserId(promise?.$id)
+      const profile = await getProfileByUserId(promise?.$id)
 
       setUser({ id: promise?.$id, name: promise?.name,  bio: profile?.bio, image: profile?.image });
-    } catch (error) {
+    } catch (error: any) {
+      console.log(`context error: ${error.message}`);
+      
       setUser(null);
     }
   };

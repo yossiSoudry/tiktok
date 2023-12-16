@@ -1,3 +1,4 @@
+'use client'
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { SiSoundcharts } from "react-icons/si";
 import { BiErrorCircle } from "react-icons/bi";
@@ -39,12 +40,12 @@ export default function PostUser({ post }: PostUserCompTypes) {
               id={`video${post.id}`}
               muted
               loop
-              className="aspect-[3/4] object-cover rounded-md"
+              className="aspect-[3/4] object-cover sm:rounded-md"
               src={useCreateBucketUrl(post.video_url)}
             />
           </Link>
         )}
-        <div className="px-1">
+        <div className="px-1 max-sm:hidden">
           <p className="text-gray-700 text-[15px] pt-1 break-words">
             {post.text}
           </p>
