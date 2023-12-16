@@ -76,12 +76,12 @@ export default function Post({ params }: PostPageTypes) {
         <div className="lg:w-[calc(100%-540px)] h-full relative">
           <Link
             href={`/profile/${params?.userId}`}
-            className="absolute text-white z-20 m-5 rounded-full bg-gray-700 p-1.5 hover:bg-gray-800"
+            className="absolute text-white z-20 m-5 rounded-full bg-gray-700 p-1.5 hover:bg-gray-800 max-sm:hidden"
           >
             <AiOutlineClose size="27" />
           </Link>
 
-          <div>
+          <div className="max-sm:hidden">
             <button
               onClick={() => loopThroughPostsUp()}
               className="absolute z-20 right-4 top-4 flex items-center justify-center rounded-full bg-gray-700 p-1.5 hover:bg-gray-800"
