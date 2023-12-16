@@ -13,8 +13,7 @@ import { usePostStore } from "@/app/stores/post";
 import { useLikeStore } from "@/app/stores/like";
 import { useCommentStore } from "@/app/stores/comment";
 import useCreateBucketUrl from "@/app/hooks/useCreateBucketUrl";
-import { useSwipeable } from 'react-swipeable';
-
+import { useSwipeable } from "react-swipeable";
 
 export default function Post({ params }: PostPageTypes) {
   const [swipeTranslation, setSwipeTranslation] = useState(0);
@@ -48,6 +47,24 @@ export default function Post({ params }: PostPageTypes) {
     });
   };
 
+  useEffect(() => {
+    const element = document.getElementById("your-swipeable-element-id");
+
+    if (element) {
+      const disableScroll = (e: any) => {
+        e.preventDefault();
+      };
+
+      element.addEventListener("touchstart", disableScroll, { passive: false });
+      element.addEventListener("touchmove", disableScroll, { passive: false });
+
+      return () => {
+        element.removeEventListener("touchstart", disableScroll);
+        element.removeEventListener("touchmove", disableScroll);
+      };
+    }
+  }, []);
+
   const handlers = useSwipeable({
     onSwiping: (eventData) => {
       eventData.event.preventDefault();
@@ -55,23 +72,21 @@ export default function Post({ params }: PostPageTypes) {
     },
     onSwiped: (eventData) => {
       eventData.event.preventDefault();
-      if (eventData.dir === 'Up') {
+      if (eventData.dir === "Up") {
         loopThroughPostsUp();
-      } else if (eventData.dir === 'Down') {
+      } else if (eventData.dir === "Down") {
         loopThroughPostsDown();
       }
-      setSwipeTranslation(0); // אפס את ההזזה לאחר החלקה
+      setSwipeTranslation(0);
     },
-    trackMouse: true
+    trackMouse: true,
   });
-  
-  
 
   return (
     <>
       <div
         id="PostPage"
-        className="lg:flex justify-between w-full h-screen bg-black overflow-auto"
+        className="lg:flex justify-between w-full h-screen bg-black overflow-auto no-scroll"
         {...handlers}
         style={{ transform: `translateY(${swipeTranslation}px)` }}
       >
