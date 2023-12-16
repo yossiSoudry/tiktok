@@ -50,9 +50,11 @@ export default function Post({ params }: PostPageTypes) {
 
   const handlers = useSwipeable({
     onSwiping: (eventData) => {
+      eventData.event.preventDefault();
       setSwipeTranslation(eventData.deltaY);
     },
     onSwiped: (eventData) => {
+      eventData.event.preventDefault();
       if (eventData.dir === 'Up') {
         loopThroughPostsUp();
       } else if (eventData.dir === 'Down') {
