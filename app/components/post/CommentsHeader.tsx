@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { AiFillHeart } from "react-icons/ai";
-import { BsChatDots, BsTrash3 } from "react-icons/bs";
+import { BsChatDots, BsChatDotsFill, BsTrash3 } from "react-icons/bs";
 import { ImMusic } from "react-icons/im";
 import moment from "moment";
 import { useEffect, useState } from "react";
@@ -19,6 +19,7 @@ import useIsLiked from "@/app/hooks/useIsLiked";
 import useCreateLike from "@/app/hooks/useCreateLike";
 import useDeleteLike from "@/app/hooks/useDeleteLike";
 import useDeletePostById from "@/app/hooks/useDeletePostById";
+import { PiTagChevronFill } from "react-icons/pi";
 
 export default function CommentsHeader({
   post,
@@ -113,8 +114,10 @@ export default function CommentsHeader({
     }
   };
   return (
-    <>
-      <div className="flex items-center justify-between px-8">
+    <div className="px-6">
+    <div className="bg-neutral-100/90 p-4 rounded-md">
+
+      <div className="flex items-center justify-between">
         <div className="flex items-center">
           <Link href={`/profile/${post?.user_id}`}>
             {post?.profile.image ? (
@@ -160,45 +163,58 @@ export default function CommentsHeader({
         ) : null}
       </div>
 
-      <p className="px-8 mt-4 text-sm">{post?.text}</p>
+      <p className=" mt-4 text-md">{post?.text}</p>
 
-      <p className="flex item-center gap-2 px-8 mt-4 text-sm font-bold">
-        <ImMusic size="17" />
-        original sound - {post?.profile.name}
+      <p className="flex items-center gap-2 mt-4 text-sm">
+        <ImMusic size="12" />
+        Originalton - {post?.profile.name}
       </p>
+    </div>
 
-      <div className="flex items-center px-8 mt-8">
+      <div className="flex items-center my-4 gap-4 px-2">
         <ClientOnly>
-          <div className="pb-4 text-center flex items-center">
+          <div className="text-center flex items-center gap-2">
             <button
               disabled={hasClickedLike}
               onClick={() => likeOrUnlike()}
-              className="rounded-full bg-gray-200 p-2 cursor-pointer"
+              className="rounded-full bg-gray-200 p-1 cursor-pointer"
             >
               {!hasClickedLike ? (
                 <AiFillHeart
                   color={likesByPost.length > 0 && userLiked ? "#ff2626" : ""}
-                  size="25"
+                  size="20"
                 />
               ) : (
                 <BiLoaderCircle className="animate-spin" size="25" />
               )}
             </button>
-            <span className="text-xs pl-2 pr-4 text-gray-800 font-semibold">
+            <span className="text-xs text-gray-800 font-semibold">
               {likesByPost.length}
             </span>
           </div>
         </ClientOnly>
 
-        <div className="pb-4 text-center flex items-center">
-          <div className="rounded-full bg-gray-200 p-2 cursor-pointer">
-            <BsChatDots size={25} />
+        <div className="text-center flex items-center gap-2">
+          <div className="rounded-full bg-gray-200 p-1 cursor-pointer">
+            <BsChatDotsFill size={18} />
           </div>
-          <span className="text-xs pl-2 text-gray-800 font-semibold">
+          <span className="text-xs text-gray-800 font-semibold">
+            <ClientOnly>
             {commentsByPost?.length}
+            </ClientOnly>
+          </span>
+        </div>
+        <div className="text-center flex items-center gap-2">
+          <div className="rounded-full bg-gray-200 p-1 cursor-pointer -rotate-90">
+            <PiTagChevronFill  size={18} />
+          </div>
+          <span className="text-xs text-gray-800 font-semibold">
+            <ClientOnly>
+            12
+            </ClientOnly>
           </span>
         </div>
       </div>
-    </>
+    </div>
   );
 }

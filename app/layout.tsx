@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import AllOverlays from './components/AllOverlays'
 import UserProvider from './context/user'
+import BottomNav from './layouts/includes/BottomNav'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -36,6 +37,7 @@ export default function RootLayout({
       <body className={`${inter.className} max-sm:bg-black`}>
       <AllOverlays />
         {children}
+        <BottomNav />
         </body>
        </UserProvider>
     </html>

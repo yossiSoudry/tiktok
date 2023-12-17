@@ -1,3 +1,4 @@
+'use client'
 import { useGeneralStore } from "@/app/stores/general";
 import Link from "next/link";
 import { redirect } from "next/navigation";
