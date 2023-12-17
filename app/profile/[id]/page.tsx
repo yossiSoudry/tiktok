@@ -25,7 +25,7 @@ export default async function Profile({ params }: ProfilePageTypes) {
   return (
     <>
       <MainLayout>
-        <div className="sm:pt-[90px] pt-4 sm:ml-[90px] 2xl:pl-[185px] lg:pl-[160px] lg:pr-0 sm:w-[calc(100%-90px)] px-0.5 sm:pr-3 max-w-[1800px] mx-auto flex flex-col max-sm:items-center">
+        <div className="max-sm:min-h-screen sm:pt-[90px] pt-4 sm:ml-[90px] lg:ml-[218px] lg:pr-0 sm:w-[calc(100%-90px)] sm:px-0.5 sm:pr-3 max-w-[1800px] mx-auto flex flex-col max-sm:items-center">
           <div className="flex justify-between w-full px-4 items-center mb-2">
             <Link href="/" className="sm:hidden">
               <HiArrowSmallLeft size={28} />

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -7,6 +7,11 @@ import MenuItem from "./MenuItem";
 import MenuItemFollow from "./MenuItemFollow";
 import { useUser } from "@/app/context/user";
 import { useGeneralStore } from "@/app/stores/general";
+import { AiFillHome } from "react-icons/ai";
+import { HiOutlinePlusSmall } from "react-icons/hi2";
+import { GoPeople } from "react-icons/go";
+import { LiaInboxSolid } from "react-icons/lia";
+import { RiUserLine } from "react-icons/ri";
 
 export default function SideNavMain() {
   let { setRandomUsers, randomUsers } = useGeneralStore();
@@ -96,6 +101,27 @@ export default function SideNavMain() {
           </div>
 
           <div className="pb-14"></div>
+        </div>
+      </div>
+      <div className="z-50 flex justify-between items-center w-full sticky bottom-0 bg-dark-2 px-3 py-1 sm:hidden bg-black text-white">
+        <div className="w-1/5 flex flex-col items-center justify-center">
+        <div><AiFillHome size={22} /></div>
+        <div className="text-xs">Home</div>
+        </div>
+        <div className="w-1/5 flex flex-col items-center justify-center">
+        <div><GoPeople  size={22} /></div>
+        <div className="text-xs">Friends</div>
+        </div>
+        <div className="w-1/5 flex flex-col items-center justify-center">
+        <div className="bg-white text-black px-1 rounded-md"><HiOutlinePlusSmall  size={22} /></div>
+        </div>
+        <div className="w-1/5 flex flex-col items-center justify-center">
+        <div><LiaInboxSolid  size={22} /></div>
+        <div className="text-xs">Inbox</div>
+        </div>
+        <div className="w-1/5 flex flex-col items-center justify-center">
+        <div><RiUserLine size={22} /></div>
+        <div className="text-xs">Profile</div>
         </div>
       </div>
     </>

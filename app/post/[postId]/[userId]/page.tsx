@@ -86,7 +86,9 @@ export default function Post({ params }: PostPageTypes) {
     <>
       <div
         id="PostPage"
-        className="lg:flex justify-between w-full h-screen bg-black overflow-auto no-scroll"
+        className="lg:flex justify-between w-full bg-black no-scroll 
+        max-sm:h-screen
+        "
         {...handlers}
         style={{ transform: `translateY(${swipeTranslation}px)` }}
       >
@@ -123,7 +125,7 @@ export default function Post({ params }: PostPageTypes) {
           <ClientOnly>
             {postById?.video_url ? (
               <video
-                className="fixed object-cover w-full my-auto z-[0] h-screen"
+                className="fixed object-cover w-full my-auto z-[0] h-[calc(100vh-40px)]"
                 src={useCreateBucketUrl(postById?.video_url)}
               />
             ) : null}
@@ -132,7 +134,7 @@ export default function Post({ params }: PostPageTypes) {
               {postById?.video_url ? (
                 <video
                   autoPlay
-                  controls
+                  // controls
                   loop
                   muted
                   className="h-screen mx-auto"
