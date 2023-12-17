@@ -12,6 +12,7 @@ import { useGeneralStore } from "@/app/stores/general";
 import useCreateBucketUrl from "@/app/hooks/useCreateBucketUrl";
 import { RandomUsers } from "@/app/types";
 import useSearchProfilesByName from "@/app/hooks/useSearchProfilesByName";
+import UploadButton from "./UploadButton";
 
 export default function TopNav() {
   const userContext = useUser();
@@ -43,10 +44,7 @@ export default function TopNav() {
     500
   );
 
-  const goTo = () => {
-    if (!userContext?.user) return setIsLoginOpen(true);
-    router.push("/upload");
-  };
+  
 
   return (
     <>
@@ -102,13 +100,7 @@ export default function TopNav() {
           </div>
 
           <div className="flex items-center gap-3 ">
-            <button
-              onClick={() => goTo()}
-              className="flex items-center border rounded-sm py-[6px] hover:bg-gray-100 pl-1.5"
-            >
-              <AiOutlinePlus color="#000000" size="22" />
-              <span className="px-2 font-medium text-[15px]">Upload</span>
-            </button>
+            <UploadButton />
 
             {!userContext?.user?.id ?  (
               <div className="flex items-center">

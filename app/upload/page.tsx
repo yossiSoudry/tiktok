@@ -9,9 +9,10 @@ import { useRouter } from "next/navigation";
 import { UploadError } from "../types";
 import { useUser } from "@/app/context/user";
 import useCreatePost from "../hooks/useCreatePost";
+import { TfiClose } from "react-icons/tfi";
 
 export default function Upload() {
-    const contextUser = useUser();
+  const contextUser = useUser();
   const router = useRouter();
 
   let [fileDisplay, setFileDisplay] = useState<string>("");
@@ -20,9 +21,9 @@ export default function Upload() {
   let [error, setError] = useState<UploadError | null>(null);
   let [isUploading, setIsUploading] = useState<boolean>(false);
 
-    useEffect(() => {
-      if (!contextUser?.user) router.push("/");
-    }, [contextUser]);
+  useEffect(() => {
+    if (!contextUser?.user) router.push("/");
+  }, [contextUser]);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -79,10 +80,20 @@ export default function Upload() {
   return (
     <>
       <UploadLayout>
-        <div className="w-full mt-[80px] mb-[40px] bg-white shadow-lg rounded-md py-6 md:px-10 px-4">
-          <div>
-            <h1 className="text-[23px] font-semibold">Upload video</h1>
-            <h2 className="text-gray-400 mt-1">Post a video to your account</h2>
+        <div className="w-full sm:mt-[80px] sm:mb-[40px] bg-white shadow-lg rounded-md py-6 md:px-10 px-4">
+          <div className="flex justify-between">
+            <div>
+              <h1 className="text-[23px] font-semibold">Upload video</h1>
+              <h2 className="text-gray-400 mt-1">
+                Post a video to your account
+              </h2>
+            </div>
+            <div
+              className="border h-fit p-2 rounded-full border-slate-400 cursor-pointer"
+              onClick={() => router.push("/")}
+            >
+              <TfiClose />
+            </div>
           </div>
 
           <div className="mt-8 md:flex gap-6">

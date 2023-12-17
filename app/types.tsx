@@ -108,6 +108,10 @@ export interface CommentsCompTypes {
 export interface PostPageTypes {
     params: { userId: string; postId: string; };
 }
+export interface PostPageLayoutTypes {
+    children: React.ReactNode;
+    params: { userId: string; postId: string; };
+}
 
 export interface ProfilePageTypes {
     params: { id: string; };
