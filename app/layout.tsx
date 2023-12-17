@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
        <UserProvider>
-      <body className={`${inter.className}`}>
+      <body className={`${inter.className} max-sm:bg-black`}>
       <AllOverlays />
         {children}
         </body>

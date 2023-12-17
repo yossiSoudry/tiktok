@@ -1,19 +1,14 @@
-// "use client";
-
 import PostUser from "@/app/components/profile/PostUser";
 import MainLayout from "@/app/layouts/MainLayout";
-import ClientOnly from "@/app/components/ClientOnly";
 import { ProfilePageTypes, User } from "@/app/types";
 import useCreateBucketUrl from "@/app/hooks/useCreateBucketUrl";
 import useGetPostsByUser from "@/actions/getPostsByUserId";
 import getProfileByUserId from "@/actions/getProfileByUserId";
-import getCurrentUser from "@/actions/getCurrentUser";
 import ProfileButton from "../_components/ProfileButton";
 import { PiGridNineFill, PiRepeat } from "react-icons/pi";
 import { TbHeartSearch } from "react-icons/tb";
 import { RiArrowDownSFill } from "react-icons/ri";
 import { HiArrowSmallLeft } from "react-icons/hi2";
-import { redirect } from "next/navigation";
 import Link from "next/link";
 
 export default async function Profile({ params }: ProfilePageTypes) {
@@ -25,7 +20,7 @@ export default async function Profile({ params }: ProfilePageTypes) {
   return (
     <>
       <MainLayout>
-        <div className="max-sm:min-h-screen sm:pt-[90px] pt-4 sm:ml-[90px] lg:ml-[218px] lg:pr-0 sm:w-[calc(100%-90px)] sm:px-0.5 sm:pr-3 max-w-[1800px] mx-auto flex flex-col max-sm:items-center">
+        <div className="max-sm:min-h-screen sm:pt-[90px] pt-4 sm:ml-[90px] lg:ml-[218px] lg:pr-0 sm:w-[calc(100%-90px)] sm:pr-3 max-w-[1800px] mx-auto flex flex-col max-sm:items-center bg-white">
           <div className="flex justify-between w-full px-4 items-center mb-2">
             <Link href="/" className="sm:hidden">
               <HiArrowSmallLeft size={28} />

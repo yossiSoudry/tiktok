@@ -14,6 +14,7 @@ import { useLikeStore } from "@/app/stores/like";
 import { useCommentStore } from "@/app/stores/comment";
 import useCreateBucketUrl from "@/app/hooks/useCreateBucketUrl";
 import { useSwipeable } from "react-swipeable";
+import MainLayout from "@/app/layouts/MainLayout";
 
 export default function Post({ params }: PostPageTypes) {
   const [swipeTranslation, setSwipeTranslation] = useState(0);
@@ -83,7 +84,7 @@ export default function Post({ params }: PostPageTypes) {
   });
 
   return (
-    <>
+    <MainLayout>
       <div
         id="PostPage"
         className="lg:flex justify-between w-full bg-black no-scroll 
@@ -159,6 +160,6 @@ export default function Post({ params }: PostPageTypes) {
           <Comments params={params} />
         </div>
       </div>
-    </>
+    </MainLayout>
   );
 }
